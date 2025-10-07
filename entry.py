@@ -18,6 +18,9 @@ def login():
         return formi()
     
 
+#arko method ni xa hai, which is more cleaner, using @app.get and @app.post.
+    
+
 
 
 
