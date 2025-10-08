@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from markupsafe import escape
 
+"""
 def check():
     return 'Thik xa, info correct xa timro, tara website nei banya xaina'
 def formi():
@@ -20,6 +21,11 @@ def login():
 
 #arko method ni xa hai, which is more cleaner, using @app.get and @app.post.
     
+"""
+
+app=Flask(__name__)
+
+@app.route()
 
 
 
