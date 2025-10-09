@@ -32,6 +32,6 @@ app=Flask(__name__)
 def hello(name=None):
     return render_template('hello.html', person=name)
 
-
+#so, i found out one thing that jinja is used for loading dynamic contents in webpages.
 
 
