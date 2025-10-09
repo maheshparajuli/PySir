@@ -40,4 +40,7 @@ Automatic escaping → protects you by showing raw HTML as text.
 |safe or Markup() → tells Jinja2 “I know this is safe, please render it as real HTML.”
 
 
+# Local context: Flask keeps the real request objects in a thread-local store, and the proxy automatically fetches the correct one.
+
+
 """
