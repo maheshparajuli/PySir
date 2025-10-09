@@ -34,4 +34,10 @@ def hello(name=None):
 
 #so, i found out one thing that jinja is used for loading dynamic contents in webpages.
 
+"""
+Automatic escaping → protects you by showing raw HTML as text.
 
+|safe or Markup() → tells Jinja2 “I know this is safe, please render it as real HTML.”
+
+
+"""
