@@ -1,7 +1,6 @@
-from flask import Flask
-from flask import request
+from flask import Flask,request,render_template
 from markupsafe import escape
-from flask import render_template
+
 
 """
 def check():
@@ -76,4 +75,18 @@ the simulated request's path is /hello
 and the HTTP method is POST
 
 If either of those conditions is false, the test will raise an AssertionError.
+
+When the with block ends, the request context is automatically cleaned up.
+Outside that block, request is no longer valid.
+
+Thus, This code is used for testing or experimenting with Flask's
+ request handling without starting a real server.
 """
+
+""" with app.request_context(environ):
+    assert request.method == 'POST'
+    
+    this is just another method of simulating the request.
+    
+    
+    """
