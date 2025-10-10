@@ -47,3 +47,5 @@ def welcome():
     if 'username' in session:
         return f"Welcome, {session['username']}!"
     return redirect(url_for('login'))
+
+#check 
