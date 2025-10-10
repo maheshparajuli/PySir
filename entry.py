@@ -49,3 +49,31 @@ with app.test_request_context('/hello', method='POST'):
     # end of the with block, such as basic assertions:
     assert request.path == '/hello'
     assert request.method == 'POST'
+
+"""  
+with app.test_request_context('/hello', method='POST'):
+
+This line simulates an HTTP request to your Flask app.
+
+The request URL is /hello
+
+The HTTP method is POST
+
+So, Flask behaves as if a user sent a POST request to http://localhost/hello,
+but it's only in memory — nothing is really sent.
+
+
+Inside the with block
+
+Within this block, you can access the request object, just like in a real route.
+
+ assert request.path == '/hello'
+assert request.method == 'POST'
+are simply tests checking whether:
+
+the simulated request's path is /hello
+
+and the HTTP method is POST
+
+If either of those conditions is false, the test will raise an AssertionError.
+"""
