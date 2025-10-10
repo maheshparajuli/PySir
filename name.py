@@ -9,7 +9,7 @@ app.secret_key = 'kxa'
 
 
 USERS = {
-    'mahesh': '1234',
+    'mahesh': '1234sova@#',
     'admin': 'admin123'
 }
 
