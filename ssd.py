@@ -28,7 +28,7 @@ def login():
         return '<p>Please provide ?user=yourname in URL</p>'
     
     elif username not in valid_users:
-        return error_fu()  # Unauthorized access
+        abort(401)
     
     # If user is valid, go to the profile page
     else:
@@ -42,10 +42,20 @@ def profile(username):
     """, name=username)
 
 @app.errorhandler(401)
-def error_fu():
+def error_fu(error):
     return render_template('aftererr.html'), 401
+
 
 if __name__ == '__main__':
     app.run(debug=True)
 
+# .\vir_env\Scripts\Activate
 
+"""
+About Responses:
+
+
+
+
+
+"""
