@@ -1,2 +1,46 @@
-from flask import Flask,request,render_template,session,url_for
+from flask import Flask,request,render_template,session,url_for,abort,redirect,render_template_string
+
+""" 
+Redirect and errors:
+
+use url_for wrapped up with redirect to redirect user to another page or endpoint.
+And use abort to abort request made by client early with error code.
+
+abort() is used when you want to stop processing a request and send a specific
+HTTP error code back to the client.
+"""
+
+
+app = Flask(__name__)
+
+# A pretend database of valid usernames
+valid_users = ['mahesh', 'sushan', 'samman']
+
+@app.route('/')
+def home():
+    return redirect(url_for('login'))  # Redirect to login page
+
+@app.route('/login')
+def login():
+    username = request.args.get('user')  # e.g. /login?user=mahesh
+    
+    if not username:
+        return '<p>Please provide ?user=yourname in URL</p>'
+    
+    if username not in valid_users:
+        abort(401)  # Unauthorized access
+    
+    # If user is valid, go to the profile page
+    return redirect(url_for('profile', username=username))
+
+@app.route('/profile/<username>')
+def profile(username):
+    return render_template_string("""
+        <h2>Welcome, {{ name }}!</h2>
+        <p>You are successfully logged in.</p>
+    """, name=username)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 
