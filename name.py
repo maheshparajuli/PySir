@@ -1,18 +1,12 @@
-from flask import Flask,request,render_template
-
-app=Flask(__name__)
-
 from flask import Flask, request, render_template, redirect, url_for, session
 
 app = Flask(__name__)
 app.secret_key = 'kxa' 
 
-
 USERS = {
     'mahesh': '1234sova@#',
     'admin': 'admin123'
 }
-
 
 def valid_login(username, password):
     """Return True if username and password match the database."""
@@ -37,15 +31,26 @@ def login():
         if valid_login(request.form['username'],
                        request.form['password']):
             return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
+        error = 'Invalid username/password'
     return render_template('login.html', error=error)
 
-#A simple page after login
+#route after login successful
 @app.route('/welcome')
 def welcome():
     if 'username' in session:
         return f"Welcome, {session['username']}!"
     return redirect(url_for('login'))
 
-#check 
+"""
+some info on session instance ::
+
+Flask's session is instance of a class called SecureCookieSession.
+It behaves like a dictionary ({ key: value }).
+Also, request.form is a kind of dictionary to understand for now.
+
+Q. seems like secret key is not used here?
+Ans: BUt what happens here is that Flask does these things internally. It stores session on client side in browser cookie,
+and to keep it secure it have to sign in into that cokkie(cryptography seal)
+
+Learn about 400 error or key error.
+"""
