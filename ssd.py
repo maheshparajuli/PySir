@@ -14,7 +14,7 @@ HTTP error code back to the client.
 app = Flask(__name__)
 
 # A pretend database of valid usernames
-valid_users = ['mahesh', 'sushan', 'samman']
+valid_users = ['mahesh', 'biplav','motey']
 
 @app.route('/')
 def home():
@@ -22,13 +22,13 @@ def home():
 
 @app.route('/login')
 def login():
-    username = request.args.get('user')  # e.g. /login?user=mahesh
+    username = request.args.get('user')  
     
     if not username:
         return '<p>Please provide ?user=yourname in URL</p>'
     
     elif username not in valid_users:
-        return redirect(url_for('error_fu'))  # Unauthorized access
+        return error_fu()  # Unauthorized access
     
     # If user is valid, go to the profile page
     else:
@@ -43,7 +43,7 @@ def profile(username):
 
 @app.errorhandler(401)
 def error_fu():
-    return render_template('aftererr.html')
+    return render_template('aftererr.html'), 401
 
 if __name__ == '__main__':
     app.run(debug=True)
