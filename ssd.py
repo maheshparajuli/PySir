@@ -28,7 +28,7 @@ def login():
         return '<p>Please provide ?user=yourname in URL</p>'
     
     if username not in valid_users:
-        abort(401)  # Unauthorized access
+        return redirect(url_for('error_fu'))  # Unauthorized access
     
     # If user is valid, go to the profile page
     return redirect(url_for('profile', username=username))
@@ -39,6 +39,10 @@ def profile(username):
         <h2>Welcome, {{ name }}!</h2>
         <p>You are successfully logged in.</p>
     """, name=username)
+
+@app.errorhandler(401)
+def error_fu():
+    return render_template('aftererr.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
