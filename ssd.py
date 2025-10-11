@@ -27,11 +27,12 @@ def login():
     if not username:
         return '<p>Please provide ?user=yourname in URL</p>'
     
-    if username not in valid_users:
+    elif username not in valid_users:
         return redirect(url_for('error_fu'))  # Unauthorized access
     
     # If user is valid, go to the profile page
-    return redirect(url_for('profile', username=username))
+    else:
+        return redirect(url_for('profile', username=username))
 
 @app.route('/profile/<username>')
 def profile(username):
