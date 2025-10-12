@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template,session,url_for,abort,redirect,render_template_string
+from flask import Flask,request,render_template,session,url_for,abort,redirect,render_template_string,make_response
 # from markupsafe import escape
 
 """ 
@@ -44,7 +44,9 @@ def profile(username):
 
 @app.errorhandler(401)
 def error_fu(error):
-    return render_template('aftererr.html'), 401
+    rr=make_response(render_template('aftererr.html'), 401)
+    rr.headers['do']='lekhnath'
+    return rr
 
 
 if __name__ == '__main__':
@@ -54,7 +56,7 @@ if __name__ == '__main__':
 
 """
 About Responses:
-
+make_response(): for customization
 
 
 
