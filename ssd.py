@@ -23,7 +23,7 @@ def home():
 
 @app.route('/login')
 def login():
-    username = request.args.get('user')  
+    username = request.args.get('user')
     
     if not username:
         return '<p>Please provide ?user=yourname in URL</p>'
@@ -58,7 +58,10 @@ if __name__ == '__main__':
 About Responses:
 make_response(): for customization
 
+jsonify(*args,**kargs): useful method 
 
+serialization: Serialization means converting complex data (like Python objects) into a
+ format that can be easily stored, transmitted, or shared — most commonly into JSON.
 
 
 """
