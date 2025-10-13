@@ -67,6 +67,10 @@ serialization: Serialization means converting complex data (like Python objects)
 """
 
 """
+Sessions: 
+This is implemented on top of cookies for you and
+ signs the cookies cryptographically.
+
 
 
 
