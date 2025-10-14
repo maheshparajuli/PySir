@@ -71,9 +71,11 @@ Sessions:
 This is implemented on top of cookies for you and
  signs the cookies cryptographically.
 
+Q. How to generate secret keys?They need to be strong,so how to make them unbreakable?
+Ans: python -c 'import secrets; print(secrets.token_hex())'
+the command will generate diff. random secret key each time u run
 
-
-
+MVP: Minimum viable product, A term that every soft dev should know?,haha...
 
 
 

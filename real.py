@@ -1,4 +1,4 @@
-from flask import Flask,render_template,session,url_for,redirect,request
+from flask import Flask,render_template,session,url_for,redirect,request,flash,Response
 
 app=Flask(__name__)
 
@@ -15,12 +15,13 @@ def login():
         session['username']=request.form['username']
         return redirect(url_for('index'))
     return """<form method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
+            <p><input type="text" name="username" placeholder="Enter Timro name?,Afno name rakhna laaj laye baba ko name lekha hai">
+            <p><input type="submit" value="Login">
         </form>"""
 
 @app.route('/logout')
 def logout():
+    # flash('something mp a businessman')
     session.pop('username',None)
     return redirect(url_for('index'))
 
@@ -61,3 +62,17 @@ default:return value if key doesnt exists, prevents from keyerror
 
 
 """
+
+
+class WSGIMiddleware:
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        # You can modify the environ or do something before the request here
+
+        def custom_start_response(status, headers, exc_info=None):
+            # You can modify the response headers or status here
+            return start_response(status, headers, exc_info)
+
+        return self.app(environ, custom_start_response)
