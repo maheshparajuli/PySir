@@ -12,7 +12,19 @@ def index():
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method=='POST':
-        session['username']
+        session['username']=request.form['username']
+        return redirect(url_for('index'))
+    return """<form method="post">
+            <p><input type=text name=username>
+            <p><input type=submit value=Login>
+        </form>"""
+
+@app.route('/logout')
+def logout():
+    session.pop('username',None)
+    return redirect(url_for('index'))
+
+
         
 
 """
@@ -39,6 +51,11 @@ just a look how session look like:
   "locale": "ne-NP"
 }
 
+There is session.pop method to remove values of session object,
+syntax:
+session.pop(key,default)
+key:session variable u want to remove 
+default:return value if key doesnt exists, prevents from keyerror
 
 
 
