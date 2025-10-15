@@ -25,6 +25,12 @@ def logout():
     session.pop('username',None)
     return redirect(url_for('index'))
 
+@app.route("/mydash")
+def mydash():
+    en=request.environ
+    name=en.get('REMOTE_ADDR','unknown')
+    return f'your ip address is {name}'
+
 if __name__ == '__main__':
     app.run(debug=True)
         
@@ -58,21 +64,11 @@ syntax:
 session.pop(key,default)
 key:session variable u want to remove 
 default:return value if key doesnt exists, prevents from keyerror
-
-
-
+)
 """
 
 
-class WSGIMiddleware:
-    def __init__(self, app):
-        self.app = app
 
-    def __call__(self, environ, start_response):
-        # You can modify the environ or do something before the request here
 
-        def custom_start_response(status, headers, exc_info=None):
-            # You can modify the response headers or status here
-            return start_response(status, headers, exc_info)
-
-        return self.app(environ, custom_start_response)
+   
+   
